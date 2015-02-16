@@ -17,7 +17,7 @@ namespace PEuler_150
 {
     public class PE150Solver
     {
-        public static int SolveTestcase()
+        public static long SolveTestcase()
         {
             int depth;
             int[] triangle;
@@ -42,26 +42,26 @@ namespace PEuler_150
         /// </summary>
         /// <param name="depth">Depth of the data triangle</param>
         /// <returns>Min sum</returns>
-        public static int SolveInputs(int depth)
+        public static long SolveInputs(int depth)
         {
             // Data set
             int elementCount = GetElementCount(depth);  // The total number of elements
             int[] triangle = new int[elementCount];     // A 1D array representation of the triangle
 
-            // Populate triangle array with random numbers
+            // Populate triangle array with random numbers (for 1000 rows, solution is -271248680)
             /*
              * t := 0 
                for k = 1 up to k = 500500: 
                     t := (615949*t + 797807) modulo 2^20 
                     sk := t−2^19
              */
-            int t = 0;
+            long t = 0;
             int k = 0;
 
             do
             {
                 t = (615949 * t + 797807) % (1 << 20);
-                triangle[k] = t - (1 << 19);
+                triangle[k] = (int)(t - (1 << 19));
                 k++;
             }
             while (k < elementCount);
@@ -74,7 +74,7 @@ namespace PEuler_150
         /// </summary>
         /// <param name="inputs">Depth, then data in the triangle</param>
         /// <returns>Min sum</returns>
-        public static int SolveInputs(params int[] inputs)
+        public static long SolveInputs(params int[] inputs)
         {
             int depth = inputs[0];
             int[] triangle = new int[GetElementCount(depth)];
@@ -86,12 +86,12 @@ namespace PEuler_150
             return SolveDataSet(depth, triangle);
         }
 
-        private static int SolveDataSet(int depth, int[] triangle)
+        private static long SolveDataSet(int depth, int[] triangle)
         {
             // Solver code
             int currRow = 1;                            // Current row number. Starts at 1.
             int currRowFst = 0;                         // the index of the first number on currRow
-            int sumMin = triangle[0]; ;                  // Minimum sum
+            long sumMin = triangle[0]; ;                  // Minimum sum
 
             // loop thru all the rows
             do
@@ -103,8 +103,8 @@ namespace PEuler_150
                 {
                     int tmpRow = currRow;
                     int tmpRowFst = currRowFst + currRowI;
-                    int currElSum = 0;
-                    int currElSumMin = 0;
+                    long currElSum = 0;
+                    long currElSumMin = 0;
 
                     // For debugging purposes only!
                     //Debug.WriteLine("Calculating min sum on apex [" + (currRowFst + currRowI) + "]");
@@ -114,7 +114,7 @@ namespace PEuler_150
                     do
                     {
                         int tmpRowI = 0;
-                        int tmpRowSum = 0;  // stores the sum on this tmpRow only!
+                        long tmpRowSum = 0;  // stores the sum on this tmpRow only!
 
                         // loop thru all relative elements on tmpRow
                         do
