@@ -45,7 +45,22 @@ namespace PEuler_150
             int[] triangle = new int[elementCount];     // A 1D array representation of the triangle
 
             // Populate triangle array with random numbers
-            // TODO: Use LCG to generate pseudo-random numbers
+            /*
+             * t := 0 
+               for k = 1 up to k = 500500: 
+                    t := (615949*t + 797807) modulo 2^20 
+                    sk := t−2^19
+             */
+            int t = 0;
+            int k = 0;
+
+            do
+            {
+                t = (615949 * t + 797807) % (1 << 20);
+                triangle[k] = t - (1 << 19);
+                k++;
+            }
+            while (k < elementCount);
 
             return SolveDataSet(depth, triangle);
         }

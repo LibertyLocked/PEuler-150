@@ -21,6 +21,8 @@ namespace PEuler_150
             if (textBox1.Text.Contains(','))
             {
                 // user specified data set
+                textBox2.Text = "Using user specified data set!" + Environment.NewLine;
+
                 string[] inputStrings = textBox1.Text.Split(',');
                 int[] inputs = new int[inputStrings.Length];
 
@@ -29,13 +31,13 @@ namespace PEuler_150
                     inputs[i] = int.Parse(inputStrings[i].Trim());
                 }
 
-                textBox2.Text = "Using user specified data set!" + Environment.NewLine;
                 textBox2.Text += PE150Solver.SolveInputs(inputs).ToString();
             }
             else
             {
                 // randomly generated data set
                 textBox2.Text = "Using randomly generated data set!" + Environment.NewLine;
+                
                 textBox2.Text += PE150Solver.SolveInputs(int.Parse(textBox1.Text)).ToString();
             }
         }
