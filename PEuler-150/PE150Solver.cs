@@ -30,6 +30,10 @@ namespace PEuler_150
             depth = 6;
             triangle = new int[] { 15, -14, -7, 20, -13, -5, -3, 8, 23, -26, 1, -4, -5, -18, 5, -16, 31, 2, 9, 28, 3 };
 
+            // TEST CASE 3: (depth 7, sol -488152)
+            //depth = 7;
+            //triangle = new int[] { 273519, -153582, 450905, 5108, 288723, -97242, 394845, -488152, 83831, 341882, 301473, 466844, -200869, 366094, -237787, 180048, -408705, 439266, 88809, 499780, -104477, 451830, 381165, -313736, -409465, -17078, -113359, 13804 };
+
             return SolveDataSet(depth, triangle);
         }
 
@@ -97,11 +101,14 @@ namespace PEuler_150
                 // loop thru all elements on currRow
                 do
                 {
-                    Debug.WriteLine("Calculating min sum on apex [" + (currRowFst + currRowI) + "]");
                     int tmpRow = currRow;
                     int tmpRowFst = currRowFst + currRowI;
                     int currElSum = 0;
                     int currElSumMin = 0;
+
+                    // For debugging purposes only!
+                    //Debug.WriteLine("Calculating min sum on apex [" + (currRowFst + currRowI) + "]");
+                    Console.WriteLine((currRowFst + currRowI + 1) + "/" + triangle.Length);
 
                     // loop thru all tmpRows under (and including) currRow
                     do
@@ -113,7 +120,7 @@ namespace PEuler_150
                         do
                         {
                             tmpRowSum += triangle[tmpRowFst + tmpRowI];
-                            Debug.WriteLine("tmpRowSum += triangle[" + (tmpRowFst + tmpRowI) + "]");
+                            //Debug.WriteLine("tmpRowSum += triangle[" + (tmpRowFst + tmpRowI) + "]");
                             tmpRowI++; // goto next element in tmpRow
                         }
                         while (tmpRowI <= (tmpRow - currRow)); // there's a problem with this - fix it later!
