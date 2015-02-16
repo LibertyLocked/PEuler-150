@@ -4,7 +4,7 @@
  * 
  * Author: Wenchao Wang
  * 
- * I wrote it as close to assembly as possible, for easy translation.
+ * I wrote it as close to assembly as possible, for an easy translation.
  * It uses an 1D array to represent the triangle.
  * 
 */
@@ -49,18 +49,39 @@ namespace PEuler_150
             triangle = new int[] { 0, -3, -4, 1, 7, 2, 3, 5, 6, 7 };
 
             // Solver logic
+            // loop thru all the rows
             do
             {
                 // Temp variables
-                int currIndex = GetElementCount(currRow - 1);
-                int tempRow = currRow;
-                int currSum = 0;
-                
+                int currRowFst = GetElementCount(currRow - 1); // the index of the first number on currRow
+                int currRowI = 0; // the i'th number on currRow. Starts at 0.
+
+                // loop thru all elements on currRow
                 do
                 {
+                    int tmpRow = currRow;
 
+                    // loop thru all the rows below (and including) currRow
+                    do
+                    {
+                        int tmpRowI = currRowI;
+
+                        // loop thru related elements on tmpRow (from currRowI to (tmpRow-currRow)+currRowI
+                        do
+                        {
+                            // TODO
+
+                            tmpRowI++;
+                        }
+                        while ( tmpRow <= (tmpRow - currRow) + currRowI );
+
+                        tmpRow++;
+                    }
+                    while (tmpRow <= depth);
+
+                    currRowI++;
                 }
-                while (tempRow <= depth);
+                while (currRowI < currRow);
 
                 currRow++;
             }
