@@ -18,7 +18,24 @@ namespace PEuler_150
 
         private void button1_Click(object sender, EventArgs e)
         {
+            int rows;
 
+            if (int.TryParse(textBox1.Text, out rows))
+            {
+                textBox2.Text = PE150Solver.Solve(rows).ToString();
+            }
+            else
+            {
+                MessageBox.Show("Please enter an integer!");
+            }
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                this.button1_Click(this, e);
+            }
         }
     }
 }
