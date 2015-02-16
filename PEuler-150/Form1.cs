@@ -39,13 +39,5 @@ namespace PEuler_150
                 textBox2.Text += PE150Solver.SolveInputs(int.Parse(textBox1.Text)).ToString();
             }
         }
-
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                this.button1_Click(this, e);
-            }
-        }
     }
 }
