@@ -36,9 +36,6 @@ namespace PEuler_150
             // Local variables
             int elementCount = GetElementCount(depth);  // The total number of elements
             int[] triangle = new int[elementCount];     // A 1D array representation of the triangle
-            int[] minSums = new int[elementCount];      // A 1D array storing min sum for each apex
-            int currRow = 1;                            // Current row number. Starts at 1.
-            int minSum = 0;                             // Minimum sum
 
             // Populate triangle array with random numbers
             // TODO: Use LCG to generate pseudo-random numbers
@@ -48,41 +45,44 @@ namespace PEuler_150
             // sol: .word -7
             triangle = new int[] { 0, -3, -4, 1, 7, 2, 3, 5, 6, 7 };
 
-            // Solver logic
+
+
+            int currRow = 1;                            // Current row number. Starts at 1.
+            int currRowFst = 0;                         // the index of the first number on currRow
+            int minSum = triangle[0];;                  // Minimum sum
+
             // loop thru all the rows
             do
             {
-                // Temp variables
-                int currRowFst = GetElementCount(currRow - 1); // the index of the first number on currRow
                 int currRowI = 0; // the i'th number on currRow. Starts at 0.
 
                 // loop thru all elements on currRow
                 do
                 {
                     int tmpRow = currRow;
+                    int tmpRowFst = currRowFst + currRowI;
 
-                    // loop thru all the rows below (and including) currRow
+                    // loop thru all tmpRows under (and including) currRow
                     do
                     {
-                        int tmpRowI = currRowI;
+                        int tmpRowI = 0;
 
-                        // loop thru related elements on tmpRow (from currRowI to (tmpRow-currRow)+currRowI
+                        // loop thru all relative elements on tmpRow
                         do
                         {
-                            // TODO
 
-                            tmpRowI++;
                         }
-                        while ( tmpRow <= (tmpRow - currRow) + currRowI );
+                        while (tmpRowI <= (tmpRow - currRow) + currRowI);
 
+                        tmpRowFst += tmpRow;
                         tmpRow++;
                     }
                     while (tmpRow <= depth);
 
-                    currRowI++;
                 }
                 while (currRowI < currRow);
 
+                currRowFst += currRow;
                 currRow++;
             }
             while (currRow <= depth);
