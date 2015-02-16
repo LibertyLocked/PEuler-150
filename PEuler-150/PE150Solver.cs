@@ -32,9 +32,11 @@ namespace PEuler_150
             // TODO: Use LCG to generate pseudo-random numbers
 
             // TEST CASE 1: (depth 4, sol -7)
+            //depth = 4;
             //triangle = new int[] { 0, -3, -4, 1, 7, 2, 3, 5, 6, 7 };
 
             // TEST CASE 2: (depth 6, sol -42)
+            depth = 6;
             triangle = new int[] { 15, -14, -7, 20, -13, -5, -3, 8, 23, -26, 1, -4, -5, -18, 5, -16, 31, 2, 9, 28, 3 };
 
             // Solver code
@@ -92,7 +94,6 @@ namespace PEuler_150
                 currRow++; // goto next row
             }
             while (currRow <= depth);
-
 
             // Return minimum sum
             return sumMin;
