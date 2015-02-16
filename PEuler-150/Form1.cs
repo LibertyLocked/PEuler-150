@@ -18,15 +18,25 @@ namespace PEuler_150
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int rows;
-
-            if (int.TryParse(textBox1.Text, out rows))
+            if (textBox1.Text.Contains(','))
             {
-                textBox2.Text = PE150Solver.Solve(rows).ToString();
+                // user specified data set
+                string[] inputStrings = textBox1.Text.Split(',');
+                int[] inputs = new int[inputStrings.Length];
+
+                for (int i = 0; i < inputs.Length; i++)
+                {
+                    inputs[i] = int.Parse(inputStrings[i].Trim());
+                }
+
+                textBox2.Text = "Using user specified data set!" + Environment.NewLine;
+                textBox2.Text += PE150Solver.SolveInputs(inputs).ToString();
             }
             else
             {
-                MessageBox.Show("Please enter an integer!");
+                // randomly generated data set
+                textBox2.Text = "Using randomly generated data set!" + Environment.NewLine;
+                textBox2.Text += PE150Solver.SolveInputs(int.Parse(textBox1.Text)).ToString();
             }
         }
 

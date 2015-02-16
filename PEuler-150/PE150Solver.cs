@@ -17,19 +17,10 @@ namespace PEuler_150
 {
     public class PE150Solver
     {
-        /// <summary>
-        /// Returns the minimum sum of a sub-triangle.
-        /// </summary>
-        /// <param name="depth">Total number of rows in the triangle.</param>
-        /// <returns></returns>
-        public static int Solve(int depth)
+        public static int SolveTestcase()
         {
-            // Data set
-            int elementCount = GetElementCount(depth);  // The total number of elements
-            int[] triangle = new int[elementCount];     // A 1D array representation of the triangle
-
-            // Populate triangle array with random numbers
-            // TODO: Use LCG to generate pseudo-random numbers
+            int depth;
+            int[] triangle;
 
             // TEST CASE 1: (depth 4, sol -7)
             //depth = 4;
@@ -39,10 +30,49 @@ namespace PEuler_150
             depth = 6;
             triangle = new int[] { 15, -14, -7, 20, -13, -5, -3, 8, 23, -26, 1, -4, -5, -18, 5, -16, 31, 2, 9, 28, 3 };
 
+            return SolveDataSet(depth, triangle);
+        }
+
+        /// <summary>
+        /// Returns the min sum of a sub-triangle in a randomly generated data triangle.
+        /// </summary>
+        /// <param name="depth">Depth of the data triangle</param>
+        /// <returns>Min sum</returns>
+        public static int SolveInputs(int depth)
+        {
+            // Data set
+            int elementCount = GetElementCount(depth);  // The total number of elements
+            int[] triangle = new int[elementCount];     // A 1D array representation of the triangle
+
+            // Populate triangle array with random numbers
+            // TODO: Use LCG to generate pseudo-random numbers
+
+            return SolveDataSet(depth, triangle);
+        }
+
+        /// <summary>
+        /// Returns the min sum of a sub-triangle in a specified data triangle.
+        /// </summary>
+        /// <param name="inputs">Depth, then data in the triangle</param>
+        /// <returns>Min sum</returns>
+        public static int SolveInputs(params int[] inputs)
+        {
+            int depth = inputs[0];
+            int[] triangle = new int[GetElementCount(depth)];
+            for (int i = 0; i < triangle.Length; i++)
+            {
+                triangle[i] = inputs[i + 1];
+            }
+
+            return SolveDataSet(depth, triangle);
+        }
+
+        private static int SolveDataSet(int depth, int[] triangle)
+        {
             // Solver code
             int currRow = 1;                            // Current row number. Starts at 1.
             int currRowFst = 0;                         // the index of the first number on currRow
-            int sumMin = triangle[0];;                  // Minimum sum
+            int sumMin = triangle[0]; ;                  // Minimum sum
 
             // loop thru all the rows
             do
