@@ -123,7 +123,7 @@ namespace PEuler_150
                             //Debug.WriteLine("tmpRowSum += triangle[" + (tmpRowFst + tmpRowI) + "]");
                             tmpRowI++; // goto next element in tmpRow
                         }
-                        while (tmpRowI <= (tmpRow - currRow)); // there's a problem with this - fix it later!
+                        while (tmpRowI <= (tmpRow - currRow));
 
                         // add tmpRowSum to currElSum
                         currElSum += tmpRowSum;
