@@ -92,6 +92,7 @@ namespace PEuler_150
             button1.Enabled = false;
             button2.Enabled = true;
             timer1.Start();
+            sw.Reset();
             sw.Start();
         }
 
