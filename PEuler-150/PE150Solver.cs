@@ -17,7 +17,19 @@ namespace PEuler_150
 {
     public class PE150Solver
     {
-        public static long SolveTestcase()
+        public int NodeProcessing
+        {
+            get;
+            private set;
+        }
+
+        public int NodeTotal
+        {
+            get;
+            private set;
+        }
+
+        public long SolveTestcase()
         {
             int depth;
             int[] triangle;
@@ -42,7 +54,7 @@ namespace PEuler_150
         /// </summary>
         /// <param name="depth">Depth of the data triangle</param>
         /// <returns>Min sum</returns>
-        public static long SolveInputs(int depth)
+        public long SolveInputs(int depth)
         {
             // Data set
             int elementCount = GetElementCount(depth);  // The total number of elements
@@ -74,7 +86,7 @@ namespace PEuler_150
         /// </summary>
         /// <param name="inputs">Depth, then data in the triangle</param>
         /// <returns>Min sum</returns>
-        public static long SolveInputs(params int[] inputs)
+        public long SolveInputs(params int[] inputs)
         {
             int depth = inputs[0];
             int[] triangle = new int[GetElementCount(depth)];
@@ -86,8 +98,11 @@ namespace PEuler_150
             return SolveDataSet(depth, triangle);
         }
 
-        private static long SolveDataSet(int depth, int[] triangle)
+        private long SolveDataSet(int depth, int[] triangle)
         {
+            // Set NodeTotal property
+            NodeTotal = triangle.Length;
+
             // Solver code
             int currRow = 1;                            // Current row number. Starts at 1.
             int currRowFst = 0;                         // the index of the first number on currRow
@@ -108,7 +123,8 @@ namespace PEuler_150
 
                     // For debugging purposes only!
                     //Debug.WriteLine("Calculating min sum on apex [" + (currRowFst + currRowI) + "]");
-                    Console.WriteLine((currRowFst + currRowI + 1) + "/" + triangle.Length);
+                    //Console.WriteLine((currRowFst + currRowI + 1) + "/" + triangle.Length);
+                    NodeProcessing = currRowFst + currRowI + 1;
 
                     // loop thru all tmpRows under (and including) currRow
                     do
