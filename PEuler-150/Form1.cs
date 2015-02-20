@@ -119,7 +119,7 @@ namespace PEuler_150
             progressBar1.Value = solver.NodeProcessing;
 
             // Update time label
-            label1.Text = sw.Elapsed.ToString(@"mm\:ss");
+            label1.Text = sw.Elapsed.ToString(@"mm\:ss\.ff");
 
             // Update percent label
             //label2.Text = solver.NodeProcessing.ToString();
