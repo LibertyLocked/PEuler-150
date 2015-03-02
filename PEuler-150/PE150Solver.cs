@@ -29,7 +29,7 @@ namespace PEuler_150
             private set;
         }
 
-        public long SolveTestcase()
+        public int SolveTestcase()
         {
             int depth;
             int[] triangle;
@@ -54,7 +54,7 @@ namespace PEuler_150
         /// </summary>
         /// <param name="depth">Depth of the data triangle</param>
         /// <returns>Min sum</returns>
-        public long SolveInputs(int depth)
+        public int SolveInputs(int depth)
         {
             // Data set
             int elementCount = GetElementCount(depth);  // The total number of elements
@@ -86,7 +86,7 @@ namespace PEuler_150
         /// </summary>
         /// <param name="inputs">Depth, then data in the triangle</param>
         /// <returns>Min sum</returns>
-        public long SolveInputs(params int[] inputs)
+        public int SolveInputs(params int[] inputs)
         {
             int depth = inputs[0];
             int[] triangle = new int[GetElementCount(depth)];
@@ -98,7 +98,7 @@ namespace PEuler_150
             return SolveDataSet(depth, triangle);
         }
 
-        private long SolveDataSet(int depth, int[] triangle)
+        private int SolveDataSet(int depth, int[] triangle)
         {
             // Set NodeTotal property
             NodeTotal = triangle.Length;
@@ -106,7 +106,7 @@ namespace PEuler_150
             // Solver code
             int currRow = 1;                            // Current row number. Starts at 1.
             int currRowFst = 0;                         // the index of the first number on currRow
-            long sumMin = triangle[0]; ;                  // Minimum sum
+            int sumMin = triangle[0]; ;                  // Minimum sum
 
             // loop thru all the rows
             do
@@ -118,8 +118,8 @@ namespace PEuler_150
                 {
                     int tmpRow = currRow;
                     int tmpRowFst = currRowFst + currRowI;
-                    long currElSum = 0;
-                    long currElSumMin = 0;
+                    int currElSum = 0;
+                    int currElSumMin = 0;
 
                     // For debugging purposes only!
                     //Debug.WriteLine("Calculating min sum on apex [" + (currRowFst + currRowI) + "]");
@@ -130,7 +130,7 @@ namespace PEuler_150
                     do
                     {
                         int tmpRowI = 0;
-                        long tmpRowSum = 0;  // stores the sum on this tmpRow only!
+                        int tmpRowSum = 0;  // stores the sum on this tmpRow only!
 
                         // loop thru all relative elements on tmpRow
                         do
