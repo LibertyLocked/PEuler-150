@@ -112,7 +112,7 @@ namespace PEuler_150
             // Local variables
             int currRow = 1;                            // Current row number. Starts at 1.
             int currRowFst = 0;                         // the index of the first number on currRow
-            int sumMin = triangle[0]; ;                  // Minimum sum
+            int sumMin = triangle[0];                   // Minimum sum
 
             // Get the cumulative rows sums
             int[] rowSums = GetCumulativeRowSums(depth, triangle);
@@ -137,9 +137,9 @@ namespace PEuler_150
                     do
                     {
                         int tmpRowSumEndIndex = tmpRowFst + (tmpRow - currRow);
-                        int tmpRowSumStartIndex = tmpRowFst - 1;
-
                         int tmpRowSumUpper = rowSums[tmpRowSumEndIndex];
+
+                        int tmpRowSumStartIndex = tmpRowFst - 1;
                         int tmpRowSumLower = 0;
                         if (currRowI != 0) tmpRowSumLower = rowSums[tmpRowSumStartIndex];
 
@@ -147,6 +147,7 @@ namespace PEuler_150
 
                         // add tmpRowSum to currElSum
                         currElSum += tmpRowSum;
+
                         // check if we have a new element sum min
                         if (currElSum < currElSumMin) currElSumMin = currElSum;
 
