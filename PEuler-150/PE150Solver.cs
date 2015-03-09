@@ -106,6 +106,8 @@ namespace PEuler_150
 
         private int SolveDataSet(int depth, int[] triangle)
         {
+            NodeProcessing = 0;
+
             // Set NodeTotal property
             NodeTotal = triangle.Length;
 
@@ -130,7 +132,7 @@ namespace PEuler_150
                     int currElSum = 0;
                     int currElSumMin = 0;
 
-                    // For debugging purposes only!
+                    // Debug output
                     NodeProcessing = currRowFst + currRowI + 1;
 
                     // loop thru all tmpRows under (and including) currRow
